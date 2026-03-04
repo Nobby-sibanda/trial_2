@@ -6,7 +6,7 @@ import os
 from datetime import datetime
 from typing import Optional, Dict, List
 import requests as req
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, send_from_directory, request, jsonify
 import google.generativeai as genai
 
 # ─── CONFIG FROM ENVIRONMENT ─────────────────────────────────
@@ -232,7 +232,7 @@ warning_gen = ContentWarningGenerator()
 # ─── ROUTES ──────────────────────────────────────────────────
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return send_from_directory("templates", "index.html")
 
 @app.route("/api/search", methods=["POST"])
 def search():
